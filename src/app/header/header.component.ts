@@ -4,12 +4,17 @@ import { ApiHttpService } from '../api-http-service/api-http-service.module';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  styleUrls: ['./header.component.min.css']
 })
 export class HeaderComponent implements OnInit {
+  home_popup = false
+  lost_popup = false
   menus : any;
-  home : any;
   login : any;
+  wishlist : any;
+  home : any;
+  lost : any;
+
   constructor( private dataService: ApiHttpService) { }
 
   ngOnInit(): void {
@@ -41,7 +46,24 @@ export class HeaderComponent implements OnInit {
       },
     (error) => { console.log(error); });
       
-      
+    this.dataService.getPagebyId(65331).subscribe(
+      (response) => {
+        this.wishlist = response;
+        if(this.wishlist.success === true){
+          this.wishlist = this.wishlist.data;
+        }
+      },
+    (error) => { console.log(error); });
+
+    this.dataService.getPagebyId(65309).subscribe(
+      (response) => {
+        this.lost = response;
+        if(this.lost.success === true){
+          this.lost = this.lost.data;
+        }
+      },
+    (error) => { console.log(error); });
+
     }
 
   customOptions: OwlOptions = {

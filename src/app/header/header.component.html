@@ -33,7 +33,7 @@
                 <div class="wish-man">
                     <ul>
                         <li class="log-in-list" (mouseover)="isShown = true" (mouseleave)="isShown = false">
-                            <a href="#" class="log-in"><img src="assets/images/favicon.png"> Login</a>
+                            <a href="#" class="log-in"><img src="assets/images/favicon.png" alt=""> {{login?.page_title}}</a>
                             <div class="log-in-drop" *ngIf="isShown">
                                 <div class="log-main">
                                     <form method="post">
@@ -54,7 +54,7 @@
                             </div>
                         </li>
                         <li class="wishlist-main" (mouseover)="isShown1 = true" (mouseleave)="isShown1 = false">
-                            <a href="#" class="wishlist"><img src="assets/images/prayer_hands.png"> Wishlist</a>
+                            <a href="#" class="wishlist"><img src="assets/images/prayer_hands.png" alt=""> {{wishlist?.page_title}}</a>
                             <div class="log-in-drop-m" *ngIf="isShown1">
                                 <div class="log-main-wishlist">
                                     <div class="wsh">
@@ -106,12 +106,12 @@
 							  <div class="form-outline">
 									<input type="search" id="form1" class="form-control" placeholder="search">
 									<button type="button" class="btn btn-primary">
-										<img src="assets/images/magnifying_glass.png">
+										<img src="assets/images/magnifying_glass.png" alt="">
 									</button>
 								</div>
 							</div>
 							<div class="cart-main">
-								<a href="#" class="cart-button"><img src="assets/images/charriot.png"> <span class="count">1</span></a>
+								<a href="#" class="cart-button"><img src="assets/images/charriot.png" alt=""> <span class="count">1</span></a>
 								<aside id="sidebar-cart">
                                     <main>
                                         <a href="#" class="close-button"><span class="close-icon">X</span></a>
@@ -219,11 +219,25 @@
         </div>
     </div>
 </header>
+
 <div class="breadcrumbs">
 	<div class="wrapper">
 		<ul class="breadcrumb">
-		<li class="breadcrumb-item"><a routerLink="" fragment="" >{{home?.page_title}}</a></li>
-		<li class="breadcrumb-item active" aria-current="page">Lost Already?</li>
+		<li class="breadcrumb-item"><a routerLink="." fragment="" (click)="home_popup = true">{{home?.page_title}}</a></li>
+		<li class="breadcrumb-item active"><a routerLink="." fragment="" (click)="lost_popup = true">{{lost?.page_title}}</a></li>
 	  </ul>
   </div>
+</div>
+
+<div class="overlay" *ngIf="home_popup">
+    <div class="popup">
+        <a class="close" (click)="home_popup = false">&times;</a>
+        <div class="content" innerHTML="{{home?.content}}"></div>
+    </div>
+</div>
+<div class="overlay" *ngIf="lost_popup">
+    <div class="popup">
+        <a class="close" (click)="lost_popup = false">&times;</a>
+        <div class="content" innerHTML="{{lost?.content}}"></div>
+    </div>
 </div>

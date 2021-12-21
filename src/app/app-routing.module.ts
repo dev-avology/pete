@@ -15,18 +15,15 @@ const routes: Routes = [
     path: '',
     component: MainLayoutComponent,
     children: [{ path: '', component: HomeComponent }],
+    data : {  
+      title: 'Home'  
+    }
   },
   {
     path: '',
     loadChildren: () =>
       import('./home/home.module').then((m) => m.HomeModule),
-  },
-
-  {
-    path: '',
-    loadChildren: () =>
-      import('./home/home.module').then((m) => m.HomeModule),
-  },
+  }
 ];
 
 @NgModule({

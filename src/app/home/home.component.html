@@ -14,8 +14,8 @@
             <div class="grid_box w_50 ">
                 <div class="prodict-info">
                     <div class="tp-one">
-                        <h2>It's Mediocrates' World, We're Just Living In It</h2>
-                        <div class="by">by <a href="#auther-s">Bounds and the notorious CDG</a></div>
+                        <h2 innerHTML="{{productTitle?.page_title}}"></h2>
+                        <div class="by">by <a href="#auther-s"innerHTML="{{productBy?.page_title}}"></a></div>
                         <div class="sizs">
                             <p>with  <strong>XVVI</strong> Contributors to be exact</p>
                         </div>
@@ -55,7 +55,7 @@
                                     </button>
                             
                                 </div>
-                                <div class="add-to-cart"><a href="#">ADD TO CHARIOT</a></div>
+                                <div class="add-to-cart"><a href="#">{{addtoBtn?.page_title}}</a></div>
                                 <div class="tabs-cont">
                                     
                                     <div id="London" class="tabcontent" style="display:block;">
@@ -165,8 +165,8 @@
                         </div>
                     </div>
                     <div class="top-thre">
-                        <p>Sample it first? (..you overly forethoughtful ba<strong>XVX</strong>rd) <a href="#" class="ragistr">Download Sample</a></p>
-                        <p>Send as gift? (Give the biggus giftus to others...) <a href="#" class="ragistr">Giftus Now</a></p>
+                        <p>{{sampleFirst?.short_desc}} <a href="#" class="ragistr">{{sampleFirstBtn?.short_desc ? sampleFirstBtn.short_desc : "Download Sample"}}</a></p>
+                        <p>{{sendGift?.short_desc}} <a href="#" class="ragistr">{{sendGiftBtn?.short_desc ? sendGiftBtn.short_desc : "Giftus Now"}}</a></p>
                     </div>
                 </div>
             </div>
@@ -180,7 +180,7 @@
                 <div class="audio-main">
                     <h3>Listen</h3>
                     <div class="play-audio">
-                        <a href="#"><img src="assets/images/play_button.png"> Jeffrey Hayzlett, International Business Celebrity, speak about Mediocrates</a>
+                        <a href="#"><img src="assets/images/play_button.png">{{listenText?.short_desc}}</a>
                     </div>
                 </div>	
             </div>
@@ -192,29 +192,8 @@
         <div class="grid">
             <div class="grid_box w_100">
                 <div class="icon_upr_main">
-                    <h3 class="homeh1_title">Why Mediorates</h3>
-                    <div class="bdr-para">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                        dolore magna aliqua. Habitant morbi tristique senectus et netus et malesuada fames ac. Pellentesque nec
-                        nam aliquam sem et tortor. Pulvinar etiam non quam lacus suspendisse faucibus interdum posuere. Amet
-                        facilisis magna etiam tempor. Nam libero justo laoreet sit. Et ligula ullamcorper malesuada proin. Enim sit
-                        amet venenatis urna cursus eget nunc scelerisque viverra. Dignissim suspendisse in est ante in. Aliquet risus
-                        feugiat in ante metus. Aliquam id diam maecenas ultricies mi. Aliquam eleifend mi in nulla posuere sollicitu-
-                        din, Enim blandit volutpat maecenas volutpat blandit. Netus et malesuada fames ac turpis. Velit ut tortor
-                        pretium viverra suspendisse potenti nullam ac tortor. Scelerisque felis imperdiet proin fermentum leo vel
-                        orci porta, Sed vulputate odio ut enim blandit volutpat maecenas volutpat blandit.</p>
-                        <p>Nulla malesuada pellentesque elit eget gravida. Quis varius quam quisque id diam vel quam elementum
-                        pulvinar. Aliquam nulla facilisi cras fermentum odio eu. Et odio pellentesque diam volutpat commodo.
-                        Ultrices neque ornare aenean euismod elementum nisi quis eleifend, laculis eu non diam phasellus vestibu-
-                        lum lorem sed risus. Tortor vitae purus faucibus ornare suspendisse sed nisi. Fames ac turpis egestas maece-
-                        nas pharetra. Dictum fusce ut placerat orci. Eros in cursus turpis massa tincidunt dui ut ornare. Enim nec dui
-                        nunc mattis.</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                        dolore magna aliqua. Habitant morbi tristique senectus et netus et malesuada fames ac. Pellentesque nec
-                        nam aliquam sem et tortor. Pulvinar etiam non quam lacus suspendisse faucibus interdum posuere. Amet
-                        facilisis magna etiam tempor.</p>
-                        <p>So says, the Honorable Marcus Boundius and Christinus Digiocamonus</p>
-                    </div>
+                    <h3 class="homeh1_title">{{WhyText?.page_title}}</h3>
+                    <div class="bdr-para" innerHTML="{{WhyText?.content}}"></div>
                 </div>
             </div>
             
@@ -223,7 +202,7 @@
 </section>
 <section class="stats_sections01" id="contributors">
     <div class="wrapper">
-        <div class="title-sm"><h3>You May (or may not) Like Our Contributors</h3></div>
+        <div class="title-sm"><h3>{{YouMayText?.page_title}}</h3></div>
         <div class="grid">
             <div class="grid_box w_100">
                 <div class="stats_imgs img_leftsects">
@@ -307,7 +286,7 @@
 			</div>
 			<div class="grid_box w_50">
 				<div class="community-cont">
-					<h3>Community</h3>
+					<h3>{{CommunityText?.page_title}}</h3>
 					<p>Nulla malesuada pellentesque elit eget gravida. Quis
 						varius quam quisque id diam vel quam elementum
 						pulvinar. Aliquam nulla facilisi cras fermentum odio
