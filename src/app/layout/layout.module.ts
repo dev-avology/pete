@@ -5,6 +5,8 @@ import { RouterModule } from '@angular/router';
 import { HeaderComponent } from "../header/header.component";
 import { FooterComponent } from "../footer/footer.component";
 import { CarouselModule } from 'ngx-owl-carousel-2';
+import { ClickOutsideDirective } from '../click-outside.directive';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -16,6 +18,7 @@ import { CarouselModule } from 'ngx-owl-carousel-2';
   ],
   declarations: [
     MainLayoutComponent,
+    ClickOutsideDirective,
     HeaderComponent,
     FooterComponent,
   ],

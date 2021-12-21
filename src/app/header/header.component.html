@@ -219,25 +219,23 @@
         </div>
     </div>
 </header>
-
 <div class="breadcrumbs">
 	<div class="wrapper">
 		<ul class="breadcrumb">
-		<li class="breadcrumb-item"><a routerLink="." fragment="" (click)="home_popup = true">{{home?.page_title}}</a></li>
-		<li class="breadcrumb-item active"><a routerLink="." fragment="" (click)="lost_popup = true">{{lost?.page_title}}</a></li>
+		<li class="breadcrumb-item" (clickOutside)="HideHomePopup()"><a routerLink="." fragment="" (click)="home_popup = true">{{home?.page_title}}</a>
+            <div class="log-in-drop home_popup" *ngIf="home_popup">
+                <div class="log-main">
+                    <div class="content" innerHTML="{{home?.content}}"></div>
+                </div>
+            </div>
+        </li>
+		<li class="breadcrumb-item active" (clickOutside)="HideLostPopup()"><a routerLink="." fragment="" (click)="lost_popup = true">{{lost?.page_title}}</a>
+            <div class="log-in-drop home_popup lost_popup" *ngIf="lost_popup">
+                <div class="log-main">
+                    <div class="content" innerHTML="{{lost?.content}}"></div>
+                </div>
+            </div>
+        </li>
 	  </ul>
   </div>
-</div>
-
-<div class="overlay" *ngIf="home_popup">
-    <div class="popup">
-        <a class="close" (click)="home_popup = false">&times;</a>
-        <div class="content" innerHTML="{{home?.content}}"></div>
-    </div>
-</div>
-<div class="overlay" *ngIf="lost_popup">
-    <div class="popup">
-        <a class="close" (click)="lost_popup = false">&times;</a>
-        <div class="content" innerHTML="{{lost?.content}}"></div>
-    </div>
 </div>

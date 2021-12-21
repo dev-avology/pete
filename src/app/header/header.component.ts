@@ -28,6 +28,14 @@ export class HeaderComponent implements OnInit {
     }
   }
 
+  HideHomePopup() {
+    this.home_popup = false;
+  }
+
+  HideLostPopup() {
+    this.lost_popup = false;
+  }
+
   ngOnInit(): void {
 
     this.isMobile = this.getIsMobile();

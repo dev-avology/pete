@@ -379,6 +379,7 @@ a.wishlist {
     background-color: transparent;
     border-radius: .25rem;
 	color:#347d56;
+    overflow: visible;
 }
 .breadcrumb-item.active {
     color: #347d56;
@@ -399,6 +400,9 @@ a.wishlist {
 ul.breadcrumb * {
     font-size: 13px;
     font-weight: 500;
+}
+.breadcrumb li {
+    position: relative;
 }
 /*----*/
 
@@ -723,7 +727,7 @@ section.Why_main {
 .bdr-para p {
     font-size: 18px;
     color: #000;
-    font-weight: 600;
+    font-weight: 400;
     margin-top: 0;
 }
 .title-sm h3 {
@@ -815,7 +819,7 @@ section.stats_sections01.events.Shop {
 .community-cont p {
     font-size: 18px;
     color: #000;
-    font-weight: 600;
+    font-weight: 400;
     margin-top: 0;
 }
 .community-cont h3 {
@@ -1727,4 +1731,21 @@ width: 70px;
 }
 .owl-theme .owl-nav {
     margin-top: 0;
+}
+
+.home_popup .log-main {
+    left: 0;
+	    top: 32px;
+}
+.home_popup .log-main:after {
+    left: 10px;
+    top: -15px;
+}
+.home_popup .log-main p {
+    color: #3e495e;
+    font-size: 16px;
+    line-height: normal;
+}
+.home_popup.lost_popup .log-main {
+    left: 24px;
 }

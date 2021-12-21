@@ -6,9 +6,10 @@ import { AppComponent } from './app.component';
 import { HomeModule } from './home/home.module';
 import { LayoutModule } from './layout/layout.module';
 import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,
