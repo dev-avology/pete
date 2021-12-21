@@ -23,7 +23,7 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "assets": [
-              "src/favicon.ico",
+              "src/assets/images/favicon.png",
               "src/assets"
             ],
             "styles": [
@@ -31,7 +31,7 @@
               "node_modules/ngx-owl-carousel-2/lib/styles/prebuilt-themes/owl.theme.default.min.css",
               "src/assets/css/global.v3.css",
               "src/styles.css",
-              "src/responsive.css"
+              "src/responsive.min.css"
             ],
             "scripts": []
           },
@@ -94,7 +94,7 @@
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
             "assets": [
-              "src/favicon.ico",
+              "src/assets/images/favicon.png",
               "src/assets"
             ],
             "styles": [
