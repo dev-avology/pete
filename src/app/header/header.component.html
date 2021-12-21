@@ -1,0 +1,229 @@
+<header id="myHeader" class="header_section">
+    <div class="head-top-bar">
+        <div class="wrapper">
+            <div class="testslidr">
+                <owl-carousel-o [options]="customOptions">
+                    <ng-template carouselSlide>
+                        <div class="testi_itms">
+                            <p>When In Roman, Do As The Romans Do</p>
+                        </div>
+                    </ng-template>
+                    <ng-template carouselSlide>
+                        <div class="testi_itms">
+                            <p>When In Roman, Do As The Romans Do</p>
+                        </div>
+                    </ng-template>
+                    <ng-template carouselSlide>
+                        <div class="testi_itms">
+                            <p>When In Roman, Do As The Romans Do</p>
+                        </div>
+                    </ng-template>
+                    <ng-template carouselSlide>
+                        <div class="testi_itms">
+                            <p>When In Roman, Do As The Romans Do</p>
+                        </div>
+                    </ng-template>
+                </owl-carousel-o>
+            </div>
+        </div>
+    </div>
+    <div class="mid_menu_header">
+		<div class="wrapper">
+            <div class="top-icons">
+                <div class="wish-man">
+                    <ul>
+                        <li class="log-in-list" (mouseover)="isShown = true" (mouseleave)="isShown = false">
+                            <a href="#" class="log-in"><img src="assets/images/favicon.png"> Login</a>
+                            <div class="log-in-drop" *ngIf="isShown">
+                                <div class="log-main">
+                                    <form method="post">
+                                        <div class="form-group"><input type="email" placeholder="Email" name="uname" required></div>
+                                        <div class="form-group"><input type="password" placeholder=" Password" name="psw" required></div>
+                                        <div class="form-group login"><button type="submit">Login</button></div>
+                                        <div class="form-group check-box">
+                                            <label>
+                                                <input type="checkbox" checked="checked" name="remember"> Remember me
+                                            </label>
+                                        </div>
+                                        <div class="container-btns" >
+                                            <button type="button" class="cancelbtn">Reset password</button>
+                                            <span class="psw"> <a href="#"> Forgot password?</a></span>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="wishlist-main" (mouseover)="isShown1 = true" (mouseleave)="isShown1 = false">
+                            <a href="#" class="wishlist"><img src="assets/images/prayer_hands.png"> Wishlist</a>
+                            <div class="log-in-drop-m" *ngIf="isShown1">
+                                <div class="log-main-wishlist">
+                                    <div class="wsh">
+                                        <p>Item added to your cart</p>
+                                        <div id="cart-notification-product" class="cart-notification-product">
+                                            <img class="cart-notification-product__image" src="https://via.placeholder.com/329x474/c6934b/c6934b.png%20C/O%20https://placeholder.com/" alt="" width="70" height="70" loading="lazy">
+                                        <div class="prd-hd">
+                                            <h3 class="cart-notification-product__name h4">Lorem ipsum dolor sit amet, consectetur</h3>
+                                        </div>
+                                        </div>
+                                        <div id="cart-notification-product" class="cart-notification-product">
+                                            <img class="cart-notification-product__image" src="https://via.placeholder.com/329x474/c6934b/c6934b.png%20C/O%20https://placeholder.com/" alt="" width="70" height="70" loading="lazy">
+                                        <div class="prd-hd">
+                                            <h3 class="cart-notification-product__name h4">Lorem ipsum dolor sit amet, consectetur</h3>
+                                        </div>
+                                        </div>
+                                        <div id="cart-notification-product" class="cart-notification-product">
+                                            <img class="cart-notification-product__image" src="https://via.placeholder.com/329x474/c6934b/c6934b.png%20C/O%20https://placeholder.com/" alt="" width="70" height="70" loading="lazy">
+                                        <div class="prd-hd">
+                                            <h3 class="cart-notification-product__name h4">Lorem ipsum dolor sit amet, consectetur</h3>
+                                        </div>
+                                        </div>
+                                        <div class="cart-notification__links">
+                                            <a href="/cart" id="cart-notification-button" class="button button--secondary button--full-width">View my cart (3)</a>
+                                            <form action="/cart" method="post" id="cart-notification-form">
+                                            <button class="button button--primary button--full-width" name="checkout">Check out</button>
+                                            </form>
+                                            <button type="button" class="link button-label">Continue shopping</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="grid top-srch">
+				<div class="grid_box w_25 for-desk">
+					<div class="header_logo">
+						<a routerLink="/">
+						<img src="assets/images/logo.png" alt="Logo" /></a>
+					</div>	
+				</div>
+				<div class="grid_box w_75">
+					<div class="serch-main">
+						<div class="form-main">
+							<div class="input-group">
+							  <div class="form-outline">
+									<input type="search" id="form1" class="form-control" placeholder="search">
+									<button type="button" class="btn btn-primary">
+										<img src="assets/images/magnifying_glass.png">
+									</button>
+								</div>
+							</div>
+							<div class="cart-main">
+								<a href="#" class="cart-button"><img src="assets/images/charriot.png"> <span class="count">1</span></a>
+								<aside id="sidebar-cart">
+                                    <main>
+                                        <a href="#" class="close-button"><span class="close-icon">X</span></a>
+                                        <h2>Shopping Bag <span class="count">2</span></h2>
+                                        <ul class="products">
+                                            <li class="product">
+                                                <a href="#" class="product-link">
+                                                    <span class="product-image">
+                                                        <img src="https://via.placeholder.com/329x474/c6934b/c6934b.png%20C/O%20https://placeholder.com/" alt="Product Photo">
+                                                    </span>
+                                                    <span class="product-details">
+                                                        <h3>Very Cool Product One</h3>
+                                                        <span class="qty-price">
+                                                            <span class="qty">
+                                                                <button class="minus-button" id="minus-button-1">-</button>
+                                                                <input type="number" id="qty-input-1" class="qty-input" step="1" min="1" max="1000" name="qty-input" value="1" pattern="[0-9]*" title="Quantity" inputmode="numeric">
+                                                                <button class="plus-button" id="plus-button-1">+</button>
+                                                                <input type="hidden" name="item-price" id="item-price-1" value="12.00">
+                                                            </span>
+                                                            <span class="price">$16.00</span>
+                                                        </span>
+                                                    </span>
+                                                </a>
+                                                <a href="#remove" class="remove-button"><span class="remove-icon">X</span></a>
+                                            </li>
+                                            <li class="product">
+                                                <a href="#" class="product-link">
+                                                    <span class="product-image">
+                                                        <img src="https://via.placeholder.com/329x474/c6934b/c6934b.png%20C/O%20https://placeholder.com/" alt="Product Photo">
+                                                    </span>
+                                                    <span class="product-details">
+                                                        <h3>Very Cool Product Two with Long Title</h3>
+                                                        <span class="qty-price">
+                                                            <span class="qty">
+                                                                <button class="minus-button" id="minus-button-1">-</button>
+                                                                <input type="number" id="qty-input-2" class="qty-input" step="1" min="1" max="1000" name="qty-input" value="1" pattern="[0-9]*" title="Quantity" inputmode="numeric">
+                                                                <button class="plus-button" id="plus-button-1">+</button>
+                                                                <input type="hidden" name="item-price" id="item-price-2" value="12.00">
+                                                            </span>
+                                                            <span class="price">$28.00</span>
+                                                        </span>
+                                                    </span>
+                                                </a>
+                                                <a href="#remove" class="remove-button"><span class="remove-icon">X</span></a>
+                                            </li>
+                                            <li class="product">
+                                                <a href="#" class="product-link">
+                                                    <span class="product-image">
+                                                        <img src="https://via.placeholder.com/329x474/c6934b/c6934b.png%20C/O%20https://placeholder.com/" alt="Product Photo">
+                                                    </span>
+                                                    <span class="product-details">
+                                                        <h3>Very Cool Product Three</h3>
+                                                        <span class="qty-price">
+                                                            <span class="qty">
+                                                                <form action="#" name="qty-form" id="qty-form-1">
+                                                                    <button class="minus-button" id="minus-button-1">-</button>
+                                                                    <input type="number" id="qty-input-3" class="qty-input" step="1" min="1" max="1000" name="qty-input" value="1" pattern="[0-9]*" title="Quantity" inputmode="numeric">
+                                                                    <button class="plus-button" id="plus-button-1">+</button>
+                                                                    <input type="hidden" name="item-price" id="item-price-3" value="12.00">
+                                                                </form>
+                                                            </span>
+                                                            <span class="price">$12.00</span>
+                                                        </span>
+                                                    </span>
+                                                </a>
+                                                <a href="#remove" class="remove-button"><span class="remove-icon">X</span></a>
+                                            </li>
+                                        </ul>
+                                        <div class="totals">
+                                            <div class="subtotal">
+                                                <span class="label">Subtotal:</span> <span class="amount">$54.00</span>
+                                            </div>
+                                        </div>
+                                        <div class="action-buttons">
+                                            <a class="view-cart-button" href="#">Cart</a><a class="checkout-button" href="#">Checkout</a>
+                                        </div>
+                                    </main>
+                                </aside>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="grid">
+				<div class="grid_box w_100">
+					<div class="header_navigation">
+						<div class="header_innr_st">
+							<div class="grid_box w_25 for-mob">
+								<div class="header_logo">
+									<a routerLink="/">
+									<img src="assets/images/logo.png" alt="Logo" /></a>
+								</div>	
+							</div>
+							<span class="toggle_menu" onclick="openNav()"><i class="fa fa-bars"> </i></span>
+							<div id="mySidenavs" class="sidenavs">
+							  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                                <ul class="menu_navigation">
+                                    <li *ngFor="let menu of menus"><a routerLink="." fragment="{{menu.menu_slug}}">{{ menu.menu_title }}</a></li>
+                                </ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+        </div>
+    </div>
+</header>
+<div class="breadcrumbs">
+	<div class="wrapper">
+		<ul class="breadcrumb">
+		<li class="breadcrumb-item"><a routerLink="" fragment="" >{{home?.page_title}}</a></li>
+		<li class="breadcrumb-item active" aria-current="page">Lost Already?</li>
+	  </ul>
+  </div>
+</div>
