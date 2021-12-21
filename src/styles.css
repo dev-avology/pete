@@ -418,6 +418,7 @@ ul.breadcrumb * {
     font-size: 36px;
     font-weight: 300;
     margin: 0;
+    font-style: italic;
 }
 .by {
     color: #3e495e;
