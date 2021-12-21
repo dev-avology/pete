@@ -30,7 +30,8 @@
               "node_modules/ngx-owl-carousel-2/lib/styles/prebuilt-themes/owl.carousel.min.css",
               "node_modules/ngx-owl-carousel-2/lib/styles/prebuilt-themes/owl.theme.default.min.css",
               "src/assets/css/global.v3.css",
-              "src/styles.css"
+              "src/styles.css",
+              "src/responsive.css"
             ],
             "scripts": []
           },

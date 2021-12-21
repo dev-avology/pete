@@ -17,7 +17,23 @@ export class HeaderComponent implements OnInit {
 
   constructor( private dataService: ApiHttpService) { }
 
+  isMobile = false;
+  getIsMobile(): boolean {
+    const w = document.documentElement.clientWidth;
+    const breakpoint = 992;
+    if (w > breakpoint) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   ngOnInit(): void {
+
+    this.isMobile = this.getIsMobile();
+    window.onresize = () => {
+      this.isMobile = this.getIsMobile();
+    };
 
     this.dataService.getMenuList().subscribe(
       (response) => {
