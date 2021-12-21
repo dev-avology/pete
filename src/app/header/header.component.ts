@@ -9,6 +9,7 @@ import { ApiHttpService } from '../api-http-service/api-http-service.module';
 export class HeaderComponent implements OnInit {
   menus : any;
   home : any;
+  login : any;
   constructor( private dataService: ApiHttpService) { }
 
   ngOnInit(): void {
@@ -20,7 +21,7 @@ export class HeaderComponent implements OnInit {
           this.menus = this.menus.data;
         }
       },
-      (error) => { console.log(error); });
+    (error) => { console.log(error); });
 
     this.dataService.getPagebyId(65308).subscribe(
       (response) => {
@@ -29,7 +30,17 @@ export class HeaderComponent implements OnInit {
           this.home = this.home.data;
         }
       },
-      (error) => { console.log(error); });
+    (error) => { console.log(error); });
+
+    this.dataService.getPagebyId(65330).subscribe(
+      (response) => {
+        this.login = response;
+        if(this.login.success === true){
+          this.login = this.login.data;
+        }
+      },
+    (error) => { console.log(error); });
+      
       
     }
 
