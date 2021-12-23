@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Title } from '@angular/platform-browser';
+import { Title, Meta } from '@angular/platform-browser';
 import { Router, NavigationEnd, ActivatedRoute, RoutesRecognized } from '@angular/router';
 import { filter, map } from 'rxjs/operators';
 
@@ -15,12 +15,19 @@ export enum Layouts {
 export class AppComponent {
   AllLayouts = Layouts;
   layout?: Layouts;
-  title: any;
-
-  constructor(private router: Router, private titleService: Title, private activatedRoute: ActivatedRoute ) {}
+  
+  constructor(private router: Router, private titleService: Title, private metaTagService: Meta, private activatedRoute: ActivatedRoute ) {}
   // We can't use `ActivatedRoute` here since we are not within a `router-outlet` context yet.
   ngOnInit() {
 
+    this.metaTagService.addTags([
+      { name: 'keywords', content: 'Mediocrates, Business Community' },
+      { name: 'robots', content: 'index, follow' },
+      { name: 'author', content: 'Pete Romano' },
+      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      { charset: 'UTF-8' }
+    ]);
+    
     const appTitle = this.titleService.getTitle();
     this.router
       .events.pipe(
