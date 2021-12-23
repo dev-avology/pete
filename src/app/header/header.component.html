@@ -32,14 +32,36 @@
             <div class="top-icons">
                 <div class="wish-man">
                     <ul>
-                        <li class="log-in-list" (mouseover)="isShown = true" (mouseleave)="isShown = false">
+                        <li class="log-in-list" (mouseover)="isShown = true" (mouseleave)="isShown = false" *ngIf="!isLoggedIn">
                             <a href="#" class="log-in"><img src="assets/images/favicon.png" alt=""> {{login?.page_title}}</a>
                             <div class="log-in-drop" *ngIf="isShown">
                                 <div class="log-main">
-                                    <form method="post">
-                                        <div class="form-group"><input type="email" placeholder="Email" name="uname" required></div>
-                                        <div class="form-group"><input type="password" placeholder=" Password" name="psw" required></div>
-                                        <div class="form-group login"><button type="submit">Login</button></div>
+                                    <div class="alert alert-danger" *ngIf="loginError">
+                                        {{loginError}}
+                                     </div>
+                                    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                                        <div class="form-group">
+                                            <input type="text" formControlName="email" class="form-control" placeholder="Username"  [ngClass]="{ 'is-invalid': submitted && f['email'].errors }">
+                                            <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
+                                                <div *ngIf="f['email'].errors['required']">Email is required</div>
+                                                <div *ngIf="f['email'].errors['email']">Email is invalid</div>
+                                              </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f['password'].errors }" placeholder="Password" autocomplete="off">
+                                            <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
+                                                <div *ngIf="f['password'].errors['required']">Password is required</div>
+                                                <div *ngIf="f['password'].errors['minlength']">
+                                                  Password must be at least 6 characters
+                                                </div>
+                                                <div *ngIf="f['password'].errors['maxlength']">
+                                                  Username must not exceed 40 characters
+                                                </div>
+                                              </div>
+                                        </div>
+                                        <div class="form-group login">
+                                            <button type="submit" [disabled]="submitted" class="btn btn-primary">Login <i class="fa fa-spinner fa-spin" *ngIf="loading"></i></button>
+                                        </div>
                                         <div class="form-group check-box">
                                             <label>
                                                 <input type="checkbox" checked="checked" name="remember"> Remember me
@@ -53,7 +75,15 @@
                                 </div>
                             </div>
                         </li>
-                        <li class="wishlist-main" (mouseover)="isShown1 = true" (mouseleave)="isShown1 = false">
+                        <li class="account-menu" (mouseover)="isAccount = true" (mouseleave)="isAccount = false" *ngIf="isLoggedIn">
+                            <a href="#" class="wishlist"><img src="assets/images/user.png" alt="">{{currentUser.email}}</a>
+                            <div class="log-in-drop" *ngIf="isAccount">
+                                <div class="log-main">
+                                    <ul><li><a routerLink="" (click)="logout()">Logout</a></li></ul>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="wishlist-main" (mouseover)="isShown1 = true" (mouseleave)="isShown1 = false" *ngIf="isLoggedIn">
                             <a href="#" class="wishlist"><img src="assets/images/prayer_hands.png" alt=""> {{wishlist?.page_title}}</a>
                             <div class="log-in-drop-m" *ngIf="isShown1">
                                 <div class="log-main-wishlist">
@@ -222,14 +252,14 @@
 <div class="breadcrumbs">
 	<div class="wrapper">
 		<ul class="breadcrumb">
-		<li class="breadcrumb-item" (clickOutside)="HideHomePopup()"><a routerLink="." fragment="" (click)="home_popup = true">{{home?.page_title}}</a>
+		<li class="breadcrumb-item" (clickOutside)="HideHomePopup()"><a (click)="home_popup = true">{{home?.page_title}}</a>
             <div class="log-in-drop home_popup" *ngIf="home_popup">
                 <div class="log-main">
                     <div class="content" innerHTML="{{home?.content}}"></div>
                 </div>
             </div>
         </li>
-		<li class="breadcrumb-item active" (clickOutside)="HideLostPopup()"><a routerLink="." fragment="" (click)="lost_popup = true">{{lost?.page_title}}</a>
+		<li class="breadcrumb-item active" (clickOutside)="HideLostPopup()"><a (click)="lost_popup = true">{{lost?.page_title}}</a>
             <div class="log-in-drop home_popup lost_popup" *ngIf="lost_popup">
                 <div class="log-main">
                     <div class="content" innerHTML="{{lost?.content}}"></div>

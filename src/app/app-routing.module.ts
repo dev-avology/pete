@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes, ExtraOptions } from '@angular/router';
 import { MainLayoutComponent } from './layout/main-layout/main-layout.component';
 import { HomeComponent } from './home/home.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 const routerOptions: ExtraOptions = {
   scrollPositionRestoration: "enabled",
@@ -23,7 +24,14 @@ const routes: Routes = [
     path: '',
     loadChildren: () =>
       import('./home/home.module').then((m) => m.HomeModule),
-  }
+  },
+
+  //Wild Card Route for 404 request
+  { path: '**', pathMatch: 'full', 
+  component: NotFoundComponent,
+  data : {  
+    title: 'Oops! | Page not found'  
+  } },
 ];
 
 @NgModule({

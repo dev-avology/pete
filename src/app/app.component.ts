@@ -15,6 +15,7 @@ export enum Layouts {
 export class AppComponent {
   AllLayouts = Layouts;
   layout?: Layouts;
+  title: any;
 
   constructor(private router: Router, private titleService: Title, private activatedRoute: ActivatedRoute ) {}
   // We can't use `ActivatedRoute` here since we are not within a `router-outlet` context yet.
