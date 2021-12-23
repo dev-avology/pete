@@ -25,6 +25,7 @@ export class HeaderComponent implements OnInit {
     password: new FormControl(''),
   });
   submitted = false;
+  err = false;
 
   returnUrl: string | undefined;
   error: {} | undefined;
@@ -162,15 +163,17 @@ onReset(): void {
   this.loginForm.reset();
 }
 
+
 onSubmit(): void {
   this.loading = true;
   this.submitted = true;
+  this.err = false;
   if (this.loginForm.invalid) {
     this.loading = false;
     this.submitted = false;
+    this.err = true;
     return;
   }
-
   this.authService.login(this.f['email'].value, this.f['password'].value).subscribe((data) => {
     this.loading = false;
     this.submitted = false;
