@@ -302,7 +302,7 @@
 	</div>
 </section>
 
-<section class="stats_sections01 events" id="events">
+<section class="stats_sections01 events" id="events" *ngIf="EventList?.success">
 	<div class="wrapper">
 		
 		<div class="title-sm"><h3>Events</h3></div>	<div class="grid_box w_100">
@@ -310,51 +310,18 @@
 		<div class="grid">
 		
 				<div class="stats_imgs img_leftsects">
-					<div class="card">
+					<div class="card" *ngFor="let Event of EventList?.data">
 						<div class="card-wrrap">
 							<div class="card-img">
 								<img src="https://via.placeholder.com/116x151/c6934b/c6934b.png%20C/O%20https://placeholder.com/" alt="" width="116" height="151">
 							</div>
 							<div class="card-body">
-								<a href="#">Mediocrates Launch</a>
-								<p>Thursday Feb 23, 2022 <br>1PM EST-3PM EST</p>
+								<a href="#">{{Event.class_title}}</a>
+								<p>{{Event.class_start_time_utc * 1000 | date:'fullDate'}} <br>{{Event.class_start_time_utc * 1000 | date:'shortTime'}} EST-{{Event.class_end_time_utc * 1000 | date:'shortTime'}} EST</p>
 							</div>
 						</div>
 					</div>
-					<div class="card">
-						<div class="card-wrrap">
-							<div class="card-img">
-								<img src="https://via.placeholder.com/116x151/c6934b/c6934b.png%20C/O%20https://placeholder.com/" alt="" width="116" height="151">
-							</div>
-							<div class="card-body">
-								<a href="#">Tricia Benn On Not Being Mediocer</a>
-								<p>Thursday March 23, 2022<br>1PM EST-3PM EST</p>
-							</div>
-						</div>
-					</div>
-					<div class="card">
-						<div class="card-wrrap">
-							<div class="card-img">
-								<img src="https://via.placeholder.com/116x151/c6934b/c6934b.png%20C/O%20https://placeholder.com/" alt="" width="116" height="151">
-							</div>
-							<div class="card-body">
-								<a href="#">Mediocrates Launch</a>
-								<p>Thursday Feb 23, 2022 <br>1PM EST-3PM EST</p>
-							</div>
-						</div>
-					</div>
-					<div class="card">
-						<div class="card-wrrap">
-							<div class="card-img">
-								<img src="https://via.placeholder.com/116x151/c6934b/c6934b.png%20C/O%20https://placeholder.com/" alt="" width="116" height="151">
-							</div>
-							<div class="card-body">
-								<a href="#">Tricia Benn On Not Being Mediocer</a>
-								<p>Thursday March 23, 2022<br>1PM EST-3PM EST</p>
-							</div>
-						</div>
-					</div>
-					
+
 				</div>
 			</div>
 

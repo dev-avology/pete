@@ -18,6 +18,7 @@ export class HomeComponent implements OnInit {
   WhyText : any;
   YouMayText : any;
   CommunityText : any;
+  EventList : any;
 
 
   constructor( private dataService: ApiHttpService ) {}
@@ -120,6 +121,12 @@ export class HomeComponent implements OnInit {
         if(this.CommunityText.success === true){
           this.CommunityText = this.CommunityText.data;
         }
+      },
+    (error) => { console.log(error); });
+
+    this.dataService.getEventList().subscribe(
+      (response) => {
+        this.EventList = response;
       },
     (error) => { console.log(error); });
 
