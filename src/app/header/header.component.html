@@ -140,6 +140,7 @@
                                               type="password"
                                               formControlName="password"
                                               placeholder="Password"
+                                              autocomplete="off"
                                               class="form-control"
                                               [ngClass]="{ 'is-invalid': errReg && r['password'].errors }"
                                             />
@@ -158,6 +159,7 @@
                                             <input
                                               type="password"
                                               placeholder="Confirm Password"
+                                              autocomplete="off"
                                               formControlName="confirmPassword"
                                               class="form-control"
                                               [ngClass]="{ 'is-invalid': errReg && r['confirmPassword'].errors }"

@@ -209,6 +209,7 @@ export class HeaderComponent implements OnInit {
   onRegReset(): void {
     this.registerForm.reset();
   }
+
   /*-------Register Form Submit-------*/ 
   onRegister(): void {
     this.loading1 = true;

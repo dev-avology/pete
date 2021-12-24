@@ -20,6 +20,10 @@ export class ApiHttpService {
   getPagebyId<T>(pageID: any): Observable<T> {
     return this.http.get<T>(this.actionUrl+"/getpagebyid/"+pageID+"?token=jKGXPaXlEPkqzVIQmjy3")
   }
+
+  getEventList<T>(): Observable<T> {
+    return this.http.get<T>(this.actionUrl+"/events/list?token=jKGXPaXlEPkqzVIQmjy3")
+  }
 }
 
 @Injectable()
