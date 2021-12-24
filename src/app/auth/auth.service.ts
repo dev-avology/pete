@@ -27,7 +27,6 @@ export class AuthService {
 
     return this.http.post<any>(this.actionUrl+`/api/v2/staffLogin`, data)
     .pipe(map(user => {
-      console.log(user);
         if (user && user.success) {
           localStorage.setItem('currentUser', JSON.stringify(user.data));
         }
@@ -54,8 +53,28 @@ export class AuthService {
   logout() {
     localStorage.removeItem('currentUser');
   }
-  
 
+  register(firstname: string, lastname: string, email: string, password: string, cellphone: string) {
+    let data = {
+      firstname: firstname,
+      lastname: lastname,
+      company_name: 'Mediocrates',
+      cellphone: cellphone,
+      email: email,
+      password: password,
+      unique_code: 'jKGXPaXlEPkqzVIQmjy3',
+      type: 'manual'
+    }
+
+    return this.http.post<any>(this.actionUrl+`/api/v2/customer/signup`, data)
+    .pipe(map(user => {
+        if (user && user.success) {
+          localStorage.setItem('currentUser', JSON.stringify(user.data));
+        }
+      }),
+      catchError(this.handleError)
+    );
+  }
 
 private handleError(error: HttpErrorResponse) {
   if (error.error instanceof ErrorEvent) {

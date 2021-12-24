@@ -75,7 +75,7 @@ header.header_section {
 .sidenavs {
     width: 100%;
     position: relative;
-    z-index: 1;
+    z-index: 9;
     top: 0px;
     right: 0;
     background: transparent;
@@ -1104,7 +1104,7 @@ a.wishlists:hover,.by a:hover,.footer_links ul li a:hover {
 .form-group.check-box input[type="checkbox"] {
     margin-bottom: 0;
     width: auto;
-    top: 1px;
+    top: 2px;
     position: relative;
     margin-right: 5px;
 }
@@ -1775,4 +1775,12 @@ width: 70px;
     background-color: #f2dede;
     border-color: #e0b1b8;
     color: #b94a48;
+}
+.account-menu .log-main ul li a {display: block;}
+.account-menu .log-main ul li {
+    line-height: 30px;
+}
+.account-menu .log-main {
+    padding-top: 10px;
+    padding-bottom: 10px;
 }

@@ -4,6 +4,7 @@ import { OwlOptions } from 'ngx-owl-carousel-2';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../auth/auth.service';
 import { ApiHttpService } from '../api-http-service/api-http-service.module';
+import Validation from '../utils/validation';
 
 @Component({
   selector: 'app-header',
@@ -12,6 +13,7 @@ import { ApiHttpService } from '../api-http-service/api-http-service.module';
 })
 export class HeaderComponent implements OnInit {
   public loading: boolean = false;
+  public loading1: boolean = false;
   home_popup = false
   lost_popup = false
   menus : any;
@@ -20,15 +22,31 @@ export class HeaderComponent implements OnInit {
   home : any;
   lost : any;
 
+  /*-------Login-------*/
   loginForm: FormGroup = new FormGroup({
     email: new FormControl(''),
     password: new FormControl(''),
   });
+
+  /*-------Register-------*/
+  registerForm: FormGroup = new FormGroup({
+    firstname: new FormControl(''),
+    lastname: new FormControl(''),
+    email: new FormControl(''),
+    cellphone: new FormControl(''),
+    password: new FormControl(''),
+    confirmPassword: new FormControl(''),
+    acceptTerms: new FormControl(false),
+  })
+
   submitted = false;
+  submittedReg = false;
+
   err = false;
+  errReg = false;
 
   returnUrl: string | undefined;
-  error: {} | undefined;
+  error: {} | any;
   loginError: string | undefined;
 
 
@@ -69,6 +87,27 @@ export class HeaderComponent implements OnInit {
       }
     );
 
+    this.registerForm = this.formBuilder.group(
+      {
+        firstname: ['', Validators.required],
+        lastname: ['', Validators.required],
+        email: ['', [Validators.required, Validators.email]],
+        password: [
+          '',
+          [
+            Validators.required,
+            Validators.minLength(6),
+            Validators.maxLength(40)
+          ]
+        ],
+        confirmPassword: ['', Validators.required],
+        cellphone: ['', Validators.required],
+        acceptTerms: [false, Validators.requiredTrue]
+      },
+      {
+        validators: [Validation.match('password', 'confirmPassword')]
+      }
+    );
 
     this.isMobile = this.getIsMobile();
     window.onresize = () => {
@@ -120,8 +159,7 @@ export class HeaderComponent implements OnInit {
       },
     (error) => { console.log(error); });
 
-
-    }
+  }
 
   customOptions: OwlOptions = {
     loop:true,
@@ -143,58 +181,92 @@ export class HeaderComponent implements OnInit {
         items:1,
       },
     },
-};
+  };
 
-isShown: boolean = false ; // hidden by default
-isShown1: boolean = false ; // hidden by default
-isAccount: boolean = false ; // hidden by default
-toggleShow() {
-  this.isShown = ! this.isShown;
-}
-toggleShow1() {
-  this.isShown = ! this.isShown;
-}
+  isShown: boolean = false ; // hidden by default
+  isShown1: boolean = false ; // hidden by default
+  isRegister: boolean = false ; // hidden by default
+  isAccount: boolean = false ; // hidden by default
 
-get f(): { [key: string]: AbstractControl } {
-  return this.loginForm.controls;
-}
-
-onReset(): void {
-  this.loginForm.reset();
-}
-
-
-onSubmit(): void {
-  this.loading = true;
-  this.submitted = true;
-  this.err = false;
-  if (this.loginForm.invalid) {
-    this.loading = false;
-    this.submitted = false;
-    this.err = true;
-    return;
+  toggleShow() {
+    this.isShown = ! this.isShown;
   }
-  this.authService.login(this.f['email'].value, this.f['password'].value).subscribe((data) => {
-    this.loading = false;
-    this.submitted = false;
-    this.onReset();
-    if (this.authService.isLoggedIn()) {
+  toggleShow1() {
+    this.isShown = ! this.isShown;
+  }
+
+  get f(): { [key: string]: AbstractControl } {
+    return this.loginForm.controls;
+  }
+  get r(): { [key: string]: AbstractControl } {
+    return this.registerForm.controls;
+  }
+
+  onReset(): void {
+    this.loginForm.reset();
+  }
+
+  onRegReset(): void {
+    this.registerForm.reset();
+  }
+  /*-------Register Form Submit-------*/ 
+  onRegister(): void {
+    this.loading1 = true;
+    this.submittedReg = true;
+    this.errReg = false;
+    if (this.registerForm.invalid) {
+      this.loading1 = false;
+      this.submittedReg = false;
+      this.errReg = true;
+      return
+    }
+    this.authService.register(this.r['firstname'].value, this.r['lastname'].value, this.r['email'].value, this.r['password'].value, this.r['cellphone'].value).subscribe((data) => {
+      this.loading1 = false;
+      this.submittedReg = false;
+      this.onRegReset();
+      if (this.authService.isLoggedIn()) {
         const redirect = this.authService.redirectUrl ? this.authService.redirectUrl : '/';
         this.router.navigate([redirect]);
       } else {
-        this.loginError = 'Email or password is incorrect.';
+        //this.loginError = 'Email or password is incorrect.';
       }
     },
     error => this.error = error
-  );
-}
+    );
+  }
 
-get isLoggedIn() { return this.authService.isLoggedIn(); }
-get currentUser() { return this.authService.currentUser(); }
-logout() { 
-  this.authService.logout();
-  const redirect = this.authService.redirectUrl ? this.authService.redirectUrl : '/';
-  this.router.navigate([redirect]);
-}
+  /*-------Login Form Submit-------*/ 
+  onSubmit(): void {
+    this.loading = true;
+    this.submitted = true;
+    this.err = false;
+    if (this.loginForm.invalid) {
+      this.loading = false;
+      this.submitted = false;
+      this.err = true;
+      return;
+    }
+    this.authService.login(this.f['email'].value, this.f['password'].value).subscribe((data) => {
+      this.loading = false;
+      this.submitted = false;
+      this.onReset();
+      if (this.authService.isLoggedIn()) {
+          const redirect = this.authService.redirectUrl ? this.authService.redirectUrl : '/';
+          this.router.navigate([redirect]);
+        } else {
+          this.loginError = 'Email or password is incorrect.';
+        }
+      },
+      error => this.error = error
+    );
+  }
+
+  get isLoggedIn() { return this.authService.isLoggedIn(); }
+  get currentUser() { return this.authService.currentUser(); }
+  logout() { 
+    this.authService.logout();
+    const redirect = this.authService.redirectUrl ? this.authService.redirectUrl : '/';
+    this.router.navigate([redirect]);
+  }
 
 }

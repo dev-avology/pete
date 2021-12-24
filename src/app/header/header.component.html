@@ -72,11 +72,129 @@
                                             <span class="psw"> <a href="#"> Forgot password?</a></span>
                                         </div>
                                     </form>
+                                    <div class="service-error" *ngIf="error">
+                                        <h1>{{error.errorTitle}}</h1>
+                                        <h3>{{error.errorDesc}}</h3>
+                                     </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="log-in-list" (mouseover)="isRegister = true" (mouseleave)="isRegister = false" *ngIf="!isLoggedIn">
+                            <a href="#" class="wishlist"><img src="assets/images/register.png" alt=""> Register</a>
+                            <div class="log-in-drop" *ngIf="isRegister">
+                                <div class="log-main">
+                                    <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
+                                        <div class="form-group">
+                                            <input
+                                              type="text"
+                                              formControlName="firstname"
+                                              placeholder="Firstname"
+                                              class="form-control"
+                                              [ngClass]="{ 'is-invalid': errReg && r['firstname'].errors }"
+                                            />
+                                            <div *ngIf="errReg && r['firstname'].errors" class="invalid-feedback">
+                                              <div *ngIf="r['firstname'].errors['required']">Firstname is required</div>
+                                            </div>
+                                          </div>
+                                      
+                                          <div class="form-group">
+                                            <input
+                                              type="text"
+                                              formControlName="lastname"
+                                              placeholder="Lastname"
+                                              class="form-control"
+                                              [ngClass]="{ 'is-invalid': errReg && r['lastname'].errors }"
+                                            />
+                                            <div *ngIf="errReg && r['lastname'].errors" class="invalid-feedback">
+                                              <div *ngIf="r['lastname'].errors['required']">Lastname is required</div>
+                                            </div>
+                                          </div>
+                                      
+                                          <div class="form-group">
+                                            <input
+                                              type="text"
+                                              placeholder="Email"
+                                              formControlName="email"
+                                              class="form-control"
+                                              [ngClass]="{ 'is-invalid': errReg && r['email'].errors }"
+                                            />
+                                            <div *ngIf="errReg && r['email'].errors" class="invalid-feedback">
+                                              <div *ngIf="r['email'].errors['required']">Email is required</div>
+                                              <div *ngIf="r['email'].errors['email']">Email is invalid</div>
+                                            </div>
+                                          </div>
+                                          <div class="form-group">
+                                            <input
+                                              type="text"
+                                              placeholder="Phone Number"
+                                              formControlName="cellphone"
+                                              class="form-control"
+                                              [ngClass]="{ 'is-invalid': errReg && r['cellphone'].errors }"
+                                            />
+                                            <div *ngIf="errReg && r['cellphone'].errors" class="invalid-feedback">
+                                              <div *ngIf="r['cellphone'].errors['required']">Phone number is required</div>
+                                            </div>
+                                          </div>
+                                          <div class="form-group">
+                                            <input
+                                              type="password"
+                                              formControlName="password"
+                                              placeholder="Password"
+                                              class="form-control"
+                                              [ngClass]="{ 'is-invalid': errReg && r['password'].errors }"
+                                            />
+                                            <div *ngIf="errReg && r['password'].errors" class="invalid-feedback">
+                                              <div *ngIf="r['password'].errors['required']">Password is required</div>
+                                              <div *ngIf="r['password'].errors['minlength']">
+                                                Password must be at least 6 characters
+                                              </div>
+                                              <div *ngIf="r['password'].errors['maxlength']">
+                                                Username must not exceed 40 characters
+                                              </div>
+                                            </div>
+                                          </div>
+                                      
+                                          <div class="form-group">
+                                            <input
+                                              type="password"
+                                              placeholder="Confirm Password"
+                                              formControlName="confirmPassword"
+                                              class="form-control"
+                                              [ngClass]="{ 'is-invalid': errReg && r['confirmPassword'].errors }"
+                                            />
+                                            <div
+                                              *ngIf="errReg && r['confirmPassword'].errors"
+                                              class="invalid-feedback"
+                                            >
+                                              <div *ngIf="r['confirmPassword'].errors['required']">
+                                                Confirm Password is required
+                                              </div>
+                                              <div *ngIf="r['confirmPassword'].errors['matching']">
+                                                Confirm Password does not match
+                                              </div>
+                                            </div>
+                                          </div>
+
+                                          <div class="form-group check-box">
+                                            <label>
+                                            <input
+                                              type="checkbox"
+                                              formControlName="acceptTerms"
+                                              [ngClass]="{ 'is-invalid': errReg && r['acceptTerms'].errors }"
+                                            />I have read and agree to the Terms</label>
+                                            <div *ngIf="errReg && r['acceptTerms'].errors" class="invalid-feedback">
+                                              Accept Terms is required
+                                            </div>
+                                          </div>
+                                        <div class="form-group login">
+                                            <button type="submit" [disabled]="submittedReg" class="btn btn-primary">Register <i class="fa fa-spinner fa-spin" *ngIf="loading1"></i></button>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </li>
                         <li class="account-menu" (mouseover)="isAccount = true" (mouseleave)="isAccount = false" *ngIf="isLoggedIn">
-                            <a href="#" class="wishlist"><img src="assets/images/user.png" alt="">{{currentUser.email}}</a>
+                            <a href="#" class="wishlist"><img src="assets/images/user.png" alt="">{{currentUser?.firstname}}</a>
                             <div class="log-in-drop" *ngIf="isAccount">
                                 <div class="log-main">
                                     <ul><li><a routerLink="" (click)="logout()">Logout</a></li></ul>
