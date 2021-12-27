@@ -79,6 +79,11 @@
                                 </div>
                             </div>
                         </li>
+
+                        <li class="wishlist-main" (mouseover)="isShown = true" (mouseleave)="isShown = false" *ngIf="!isLoggedIn">
+                            <a href="#" class="wishlist"><img src="assets/images/prayer_hands.png" alt=""> {{wishlist?.page_title}}</a>
+                        </li>
+                        
                         <li class="log-in-list" (mouseover)="isRegister = true" (mouseleave)="isRegister = false" *ngIf="!isLoggedIn">
                             <a href="#" class="wishlist"><img src="assets/images/register.png" alt=""> Register</a>
                             <div class="log-in-drop" *ngIf="isRegister">

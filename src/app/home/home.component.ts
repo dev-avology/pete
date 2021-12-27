@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiHttpService } from '../api-http-service/api-http-service.module';
 
+declare function abc(): any;
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -19,9 +21,28 @@ export class HomeComponent implements OnInit {
   YouMayText : any;
   CommunityText : any;
   EventList : any;
-
+  ProductList: any;
 
   constructor( private dataService: ApiHttpService ) {}
+
+  onClick(evt: any, cityName: any) {
+      var i, tabcontent, tablinks;
+      tabcontent = document.getElementsByClassName("tabcontent") as HTMLCollectionOf<HTMLElement>;
+      for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+      }
+      tablinks = document.getElementsByClassName("tablinks");
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+      }
+      if(document.getElementById(cityName)){
+        let c = window.document.getElementById(cityName);
+        if (c !== null) {
+        c.style.display = "block";
+        evt.currentTarget.className += " active";
+        }
+      }
+  }
 
   ngOnInit(): void {
 
@@ -129,6 +150,11 @@ export class HomeComponent implements OnInit {
         this.EventList = response;
       },
     (error) => { console.log(error); });
+
+    this.dataService.getProductList().subscribe((response) => {
+      this.ProductList = response;
+    },
+    (error) =>{ console.log(error); });
 
   }
 

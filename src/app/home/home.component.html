@@ -29,28 +29,28 @@
                         <div class="book-types">
                             <div class="tabs-main">
                                 <div class="tab">
-                                    <button class="tablinks active" onclick="openCity(event, 'London')">
+                                    <button class="tablinks active" (click)="onClick($event, 'London')">
                                         <p class="sct-price">Virtual Book & Community</p>
                                         <h4><span class="dlr-tw">$</span> 9.99<span class="month-tw">/month</span></h4>
                                     </button>
-                                    <button id="auther-s" class="tablinks" onclick="openCity(event, 'Paris')">
+                                    <button id="auther-s" class="tablinks" (click)="onClick($event, 'Paris')">
                                         <p class="sct-price">Virtual Book Only</p>
                                         <h4><span class="dlr-tw">$</span> 19.99<span class="month-tw">/1 Time</span></h4>
                                     </button>
-                                    <button id="auther-s1" class="tablinks" onclick="openCity(event, 'Paris1')">
+                                    <button id="auther-s1" class="tablinks" (click)="onClick($event, 'Paris1')">
                                         <p class="sct-price">Pre-Order Hard Cover</p>
                                         <h4><span class="dlr-tw">$</span> 29.99<span class="month-tw">/1 Time</span></h4>
                                     </button>
                                     
-                                    <button id="auther-s2" class="tablinks" onclick="openCity(event, 'Paris2')">
+                                    <button id="auther-s2" class="tablinks" (click)="onClick($event, 'Paris2')">
                                         <p class="sct-price">Life's Mediocre enough</p>
                                         <h4><span class="dlr-tw">$</span> 0<span class="month-tw">/1 Time</span></h4>
                                     </button>
-                                    <button id="auther-s3" class="tablinks" onclick="openCity(event, 'Paris3')">
+                                    <button id="auther-s3" class="tablinks" (click)="onClick($event, 'Paris3')">
                                         <p class="sct-price">Mediocrates Life Lessons</p>
                                         <h4><span class="dlr-tw">$</span> 0<span class="month-tw">/1 Time</span></h4>
                                     </button>
-                                    <button id="auther-s4" class="tablinks" onclick="openCity(event, 'Paris4')">
+                                    <button id="auther-s4" class="tablinks" (click)="onClick($event, 'Paris4')">
                                         <p class="sct-price">Send Chapter Anonymously</p>
                                         <h4><span class="dlr-tw">$</span> 1.29<span class="month-tw">/1 Time</span></h4>
                                     </button>
@@ -335,57 +335,21 @@
 		
 		<div class="title-sm"><h3>Shop</h3></div>
 		<div class="grid_box w_100">
-		
-		<div class="grid">
-		
-				<div class="stats_imgs img_leftsects">
-					<div class="card">
+		    <div class="grid">
+				<div class="stats_imgs img_leftsects" *ngIf="ProductList?.data.products">
+					<div class="card" *ngFor="let Product of ProductList?.data.products">
 						<div class="card-wrrap">
 							<div class="card-img">
 								<img src="https://via.placeholder.com/116x151/c6934b/c6934b.png%20C/O%20https://placeholder.com/" alt="" width="116" height="151">
 							</div>
 							<div class="card-body">
-								<a href="#">hat</a>
+								<a href="#">{{Product.prod_title}}</a>
 				
 							</div>
 						</div>
 					</div>
-					<div class="card">
-						<div class="card-wrrap">
-							<div class="card-img">
-								<img src="https://via.placeholder.com/116x151/c6934b/c6934b.png%20C/O%20https://placeholder.com/" alt="" width="116" height="151">
-							</div>
-							<div class="card-body">
-								<a href="#">hat</a>
-							</div>
-						</div>
-					</div>
-					<div class="card">
-						<div class="card-wrrap">
-							<div class="card-img">
-								<img src="https://via.placeholder.com/116x151/c6934b/c6934b.png%20C/O%20https://placeholder.com/" alt="" width="116" height="151">
-							</div>
-							<div class="card-body">
-								<a href="#">hat</a>
-							</div>
-						</div>
-					</div>
-					<div class="card">
-						<div class="card-wrrap">
-							<div class="card-img">
-								<img src="https://via.placeholder.com/116x151/c6934b/c6934b.png%20C/O%20https://placeholder.com/" alt="" width="116" height="151">
-							</div>
-							<div class="card-body">
-								<a href="#">hat</a>
-							</div>
-						</div>
-					</div>
-					
-					
 				</div>
-		</div>
-
-			
+		    </div>
 		</div>
 	</div>
 </section>
