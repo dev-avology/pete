@@ -785,7 +785,7 @@ section.stats_sections01 .wrapper {
     line-height: normal;
 }
 .stats_imgs.img_leftsects {
-    justify-content: space-between;
+    /* justify-content: space-between; */
 }/*
 section.stats_sections01.events .card-img {
     max-width: 156px;

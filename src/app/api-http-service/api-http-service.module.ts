@@ -24,6 +24,10 @@ export class ApiHttpService {
   getEventList<T>(): Observable<T> {
     return this.http.get<T>(this.actionUrl+"/events/list?token=jKGXPaXlEPkqzVIQmjy3")
   }
+
+  getProductList<T>(): Observable<T> {
+    return this.http.get<T>(this.actionUrl+"/productwithvariations/list?token=jKGXPaXlEPkqzVIQmjy3")
+  }
 }
 
 @Injectable()
