@@ -15,7 +15,7 @@
                 <div class="prodict-info">
                     <div class="tp-one">
                         <div class="by">Welcome to</div>
-                        <h2 innerHTML="{{productTitle?.page_title}}"></h2>
+                        <h2 innerHTML="{{productTitle?.page_title}} <span *ngIf='afterTitle?.page_title'>{{afterTitle?.page_title}}</span>" *ngIf="productTitle?.page_title"></h2>
                         <div class="by">by <a href="#auther-s"innerHTML="{{productBy?.page_title}}"></a></div>
                         <div class="sizs">
                             <p>with  <strong>XVVI</strong> Contributors to be exact</p>
@@ -174,7 +174,7 @@
         </div>
     </div>
 </section>
-<section class="audio-sc">
+<section class="audio-sc" *ngIf="listenText?.short_desc">
     <div class="wrapper">
         <div class="grid">
             <div class="grid_box w_50">
@@ -188,13 +188,13 @@
         </div>
     </div>
 </section>
-<section class="Why_main" id="why-mediocrates">
+<section class="Why_main" id="why-mediocrates" *ngIf="WhyText?.page_title || WhyText?.content">
     <div class="wrapper">
         <div class="grid">
             <div class="grid_box w_100">
                 <div class="icon_upr_main">
-                    <h3 class="homeh1_title">{{WhyText?.page_title}}</h3>
-                    <div class="bdr-para" innerHTML="{{WhyText?.content}}"></div>
+                    <h3 class="homeh1_title" *ngIf="WhyText?.page_title">{{WhyText?.page_title}}</h3>
+                    <div class="bdr-para" innerHTML="{{WhyText?.content}}" *ngIf="WhyText?.content"></div>
                 </div>
             </div>
             
@@ -203,65 +203,23 @@
 </section>
 <section class="stats_sections01" id="contributors">
     <div class="wrapper">
-        <div class="title-sm"><h3>{{YouMayText?.page_title}}</h3></div>
+        <div class="title-sm" *ngIf="YouMayText?.page_title"><h3>{{YouMayText?.page_title}}</h3></div>
         <div class="grid">
             <div class="grid_box w_100">
                 <div class="stats_imgs img_leftsects">
-                    <div class="card">
-                        <a href="#" class="card-wrrap" id="myBtn">
-                            <div class="card-img">
-                                <img src="https://via.placeholder.com/116x151/c6934b/c6934b.png%20C/O%20https://placeholder.com/" alt="" width="116" height="151">
-                            </div>
-                            <div class="card-body">
-                                <p class="a">Jeffrey Hayzlett</p>
-                                <p>International Business Celebrity</p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="card">
-                        <a href="#" class="card-wrrap">
-                            <div class="card-img">
-                                <img src="https://via.placeholder.com/116x151/c6934b/c6934b.png%20C/O%20https://placeholder.com/" alt="" width="116" height="151">
-                            </div>
-                            <div class="card-body">
-                                <p class="a">Jeffrey Hayzlett</p>
-                                <p>International Business Celebrity</p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="card">
-                        <a href="#" class="card-wrrap">
-                            <div class="card-img">
-                                <img src="https://via.placeholder.com/116x151/c6934b/c6934b.png%20C/O%20https://placeholder.com/" alt="" width="116" height="151">
-                            </div>
-                            <div class="card-body">
-                                <p class="a">Jeffrey Hayzlett</p>
-                                <p>International Business Celebrity</p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="card">
-                        <a href="#" class="card-wrrap">
-                            <div class="card-img">
-                                <img src="https://via.placeholder.com/116x151/c6934b/c6934b.png%20C/O%20https://placeholder.com/" alt="" width="116" height="151">
-                            </div>
-                            <div class="card-body">
-                                <p class="a">Jeffrey Hayzlett</p>
-                                <p>International Business Celebrity</p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="card">
-                        <a href="#" class="card-wrrap">
-                            <div class="card-img">
-                                <img src="https://via.placeholder.com/116x151/c6934b/c6934b.png%20C/O%20https://placeholder.com/" alt="" width="116" height="151">
-                            </div>
-                            <div class="card-body">
-                                <p class="a">Jeffrey Hayzlett</p>
-                                <p>International Business Celebrity</p>
-                            </div>
-                        </a>
-                    </div>
+                    <ng-container *ngFor="let contributors of ContributorsList?.data; let i = index">
+                        <div class="card" *ngIf="i<10">
+                            <a href="#" class="card-wrrap" id="myBtn">
+                                <div class="card-img">
+                                    <img src="https://via.placeholder.com/116x151/c6934b/c6934b.png%20C/O%20https://placeholder.com/" alt="" width="116" height="151">
+                                </div>
+                                <div class="card-body">
+                                    <p class="a">{{contributors?.firstname}} {{contributors?.lastname}}</p>
+                                    <p *ngIf="contributors?.cust_lable">{{contributors?.cust_lable}}</p>
+                                </div>
+                            </a>
+                        </div>
+                    </ng-container>
                 </div>
             </div>
         </div>
@@ -277,7 +235,7 @@
 
 </section>
 
-<section class="Community-sc" id="community">
+<section class="Community-sc" id="community" *ngIf="CommunityText">
 	<div class="wrapper">
 		<div class="grid">
 			<div class="grid_box w_50">
@@ -304,47 +262,41 @@
 
 <section class="stats_sections01 events" id="events" *ngIf="EventList?.success">
 	<div class="wrapper">
-		
 		<div class="title-sm"><h3>Events</h3></div>	<div class="grid_box w_100">
-		
 		<div class="grid">
-		
 				<div class="stats_imgs img_leftsects">
 					<div class="card" *ngFor="let Event of EventList?.data">
 						<div class="card-wrrap">
 							<div class="card-img">
-								<img src="https://via.placeholder.com/116x151/c6934b/c6934b.png%20C/O%20https://placeholder.com/" alt="" width="116" height="151">
+								<img src="{{Event.cloudfront_url}}{{Event.json_class?.featured_image_url}}" alt="" width="116" height="151" *ngIf="Event.json_class?.featured_image_url">
+								<img src="https://via.placeholder.com/116x151/c6934b/c6934b.png%20C/O%20https://placeholder.com/" alt="" width="116" height="151" *ngIf="!Event.json_class?.featured_image_url">
 							</div>
 							<div class="card-body">
 								<a href="#">{{Event.class_title}}</a>
-								<p>{{Event.class_start_time_utc * 1000 | date:'fullDate'}} <br>{{Event.class_start_time_utc * 1000 | date:'shortTime'}} EST-{{Event.class_end_time_utc * 1000 | date:'shortTime'}} EST</p>
+								<p>{{Event.class_start_time_utc * 1000 | date:'fullDate'}} <br>{{Event.class_start_time_utc * 1000 | date:'shortTime'}} EST - {{Event.class_end_time_utc * 1000 | date:'fullDate'}} {{Event.class_end_time_utc * 1000 | date:'shortTime'}} EST</p>
 							</div>
 						</div>
 					</div>
-
 				</div>
 			</div>
-
-			
 		</div>
 	</div>
 </section>
 
-<section class="stats_sections01 events Shop" id="shop">
+<section class="stats_sections01 events Shop" id="shop" *ngIf="ProductList?.data.products">
 	<div class="wrapper">
-		
 		<div class="title-sm"><h3>Shop</h3></div>
 		<div class="grid_box w_100">
 		    <div class="grid">
-				<div class="stats_imgs img_leftsects" *ngIf="ProductList?.data.products">
+				<div class="stats_imgs img_leftsects">
 					<div class="card" *ngFor="let Product of ProductList?.data.products">
 						<div class="card-wrrap">
 							<div class="card-img">
-								<img src="https://via.placeholder.com/116x151/c6934b/c6934b.png%20C/O%20https://placeholder.com/" alt="" width="116" height="151">
+								<img src="{{ProductList.cloudfront_url}}{{Product.prod_img}}" alt="" width="116" height="151" *ngIf="Product.prod_img">
+								<img src="https://via.placeholder.com/116x151/c6934b/c6934b.png%20C/O%20https://placeholder.com/" alt="" width="116" height="151" *ngIf="!Product.prod_img">
 							</div>
 							<div class="card-body">
-								<a href="#">{{Product.prod_title}}</a>
-				
+								<a href="#" *ngIf="Product.prod_title">{{Product.prod_title}}</a>
 							</div>
 						</div>
 					</div>
