@@ -185,6 +185,7 @@ export class HeaderComponent implements OnInit {
 
   isShown: boolean = false ; // hidden by default
   isShown1: boolean = false ; // hidden by default
+  isWishlist: boolean = false ; // hidden by default
   isRegister: boolean = false ; // hidden by default
   isAccount: boolean = false ; // hidden by default
 

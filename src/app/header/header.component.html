@@ -41,7 +41,7 @@
                                      </div>
                                     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
                                         <div class="form-group">
-                                            <input type="text" formControlName="email" class="form-control" placeholder="Username"  [ngClass]="{ 'is-invalid': err && f['email'].errors }">
+                                            <input type="text" formControlName="email" class="form-control" placeholder="Email"  [ngClass]="{ 'is-invalid': err && f['email'].errors }">
                                             <div *ngIf="err && f['email'].errors" class="invalid-feedback">
                                                 <div *ngIf="f['email'].errors['required']">Email is required</div>
                                                 <div *ngIf="f['email'].errors['email']">Email is invalid</div>
@@ -62,6 +62,9 @@
                                         <div class="form-group login">
                                             <button type="submit" [disabled]="submitted" class="btn btn-primary">Login <i class="fa fa-spinner fa-spin" *ngIf="loading"></i></button>
                                         </div>
+                                        <div class="form-group reg-guest">
+                                            <span class="psw"> <a href="#" (click)="isRegister = true">or Register as Guest</a></span>
+                                        </div>
                                         <div class="form-group check-box">
                                             <label>
                                                 <input type="checkbox" checked="checked" name="remember"> Remember me
@@ -80,12 +83,16 @@
                             </div>
                         </li>
 
-                        <li class="wishlist-main" (mouseover)="isShown = true" (mouseleave)="isShown = false" *ngIf="!isLoggedIn">
+                        <li class="wishlist-main" (mouseover)="isWishlist = true" (mouseleave)="isWishlist = false; isRegister = false" *ngIf="!isLoggedIn">
                             <a href="#" class="wishlist"><img src="assets/images/prayer_hands.png" alt=""> {{wishlist?.page_title}}</a>
-                        </li>
-                        
-                        <li class="log-in-list" (mouseover)="isRegister = true" (mouseleave)="isRegister = false" *ngIf="!isLoggedIn">
-                            <a href="#" class="wishlist"><img src="assets/images/register.png" alt=""> Register</a>
+                            <div class="log-in-drop" *ngIf="isWishlist">
+                                <div class="log-main wishlist-popup">
+                                    <h4>Add selected item,<br/>
+                                    (Product name) to your wishlist?</h4>
+                                    <p>Click to <a href="#" (click)="isShown = true">Login</a> or <a href="#" (click)="isRegister = true">Register</a> as a Guest</p>
+                                </div>
+                            </div>
+
                             <div class="log-in-drop" *ngIf="isRegister">
                                 <div class="log-main">
                                     <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
@@ -199,7 +206,13 @@
                                     </form>
                                 </div>
                             </div>
+
                         </li>
+                        
+                        <!--li class="log-in-list" (mouseover)="isRegister = true" (mouseleave)="isRegister = false" *ngIf="!isLoggedIn">
+                            <a href="#" class="wishlist"><img src="assets/images/register.png" alt=""> Register</a>
+                            
+                        </li-->
                         <li class="account-menu" (mouseover)="isAccount = true" (mouseleave)="isAccount = false" *ngIf="isLoggedIn">
                             <a href="#" class="wishlist"><img src="assets/images/user.png" alt="">{{currentUser?.firstname}}</a>
                             <div class="log-in-drop" *ngIf="isAccount">

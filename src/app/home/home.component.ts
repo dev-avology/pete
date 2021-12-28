@@ -22,6 +22,8 @@ export class HomeComponent implements OnInit {
   CommunityText : any;
   EventList : any;
   ProductList: any;
+  ContributorsList: any;
+  afterTitle: any;
 
   constructor( private dataService: ApiHttpService ) {}
 
@@ -144,6 +146,15 @@ export class HomeComponent implements OnInit {
         }
       },
     (error) => { console.log(error); });
+    
+    this.dataService.getPagebyId(65366).subscribe(
+      (response) => {
+        this.afterTitle = response;
+        if(this.afterTitle.success === true){
+          this.afterTitle = this.afterTitle.data;
+        }
+      },
+    (error) => { console.log(error); });
 
     this.dataService.getEventList().subscribe(
       (response) => {
@@ -154,8 +165,12 @@ export class HomeComponent implements OnInit {
     this.dataService.getProductList().subscribe((response) => {
       this.ProductList = response;
     },
-    (error) =>{ console.log(error); });
+    (error) => { console.log(error); });
 
+    this.dataService.getContributorsList().subscribe((response) => {
+      this.ContributorsList = response
+    },
+    (error) => { console.log(error); });
   }
 
 }

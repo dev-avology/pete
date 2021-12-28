@@ -1784,3 +1784,18 @@ width: 70px;
     padding-top: 10px;
     padding-bottom: 10px;
 }
+.log-main.wishlist-popup p {margin: 0;font-size: 15px;}
+.log-main.wishlist-popup {text-align: center;}
+.log-main.wishlist-popup a {font-size: 16px; display: inline-block;}
+.log-main.wishlist-popup h4 {
+    font-size: 16px;
+    font-family: 'Lato';
+    font-weight: 400;
+    margin: 10px 0;
+}
+.reg-guest a {display: block;}
+.reg-guest {text-align: right;}
+.tp-one h2 span {
+    font-style: normal;
+    font-family: 'Baskerville-SemiBold';
+}

@@ -28,6 +28,11 @@ export class ApiHttpService {
   getProductList<T>(): Observable<T> {
     return this.http.get<T>(this.actionUrl+"/productwithvariations/list?token=jKGXPaXlEPkqzVIQmjy3")
   }
+
+  getContributorsList<T>(): Observable<T> {
+    return this.http.post<T>(this.actionUrl+"/api/v2/customer/list1",{token: "jKGXPaXlEPkqzVIQmjy3"})
+  }
+  
 }
 
 @Injectable()
